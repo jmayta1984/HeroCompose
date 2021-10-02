@@ -11,16 +11,4 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun heroDao(): HeroDao
 
-    companion object {
-        private var INSTANCE: AppDatabase? = null
-
-        fun getInstance(context: Context): AppDatabase {
-            if (INSTANCE == null) {
-                INSTANCE =
-                    Room.databaseBuilder(context, AppDatabase::class.java, "heroes.dn").build()
-            }
-            return INSTANCE as AppDatabase
-        }
-
-    }
 }

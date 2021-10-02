@@ -1,4 +1,4 @@
-package pe.edu.upc.superherocompose.screens
+package pe.edu.upc.superherocompose.screens.herolist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -13,33 +13,26 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import kotlinx.coroutines.launch
-import pe.edu.upc.superherocompose.data.local.AppDatabase
 import pe.edu.upc.superherocompose.data.model.Hero
-import pe.edu.upc.superherocompose.data.remote.ApiClient
-import pe.edu.upc.superherocompose.repository.HeroRepository
 
 @Composable
-fun HeroList(selectHero: (String) -> Unit) {
-    val apiService = ApiClient.build()
-    val context = LocalContext.current
-    val favoriteDao = AppDatabase.getInstance(context).heroDao()
-    val repository = HeroRepository(apiService, favoriteDao)
-    val coroutineScope = rememberCoroutineScope()
-    var name by remember { mutableStateOf("") }
-    var heroes: List<Hero> by remember { mutableStateOf(listOf()) }
-    val focusManager = LocalFocusManager.current
+fun HeroList(viewModel: HeroListViewModel, selectHero: (String) -> Unit) {
 
+    var name by remember {
+        mutableStateOf("")
+    }
+    val heroes: List<Hero> by viewModel.heroes.observeAsState(listOf())
+    val focusManager = LocalFocusManager.current
 
     Scaffold {
         Column {
@@ -60,14 +53,12 @@ fun HeroList(selectHero: (String) -> Unit) {
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
-                        coroutineScope.launch {
-                            heroes = repository.fetchHeroesByName(name)
-                            focusManager.clearFocus()
-                        }
+                        viewModel.fetchHeroesByName(name)
+                        focusManager.clearFocus()
                     }
                 )
             )
-            HeroList(heroes, repository, selectHero)
+            HeroList(heroes, viewModel, selectHero)
         }
     }
 }
@@ -75,24 +66,23 @@ fun HeroList(selectHero: (String) -> Unit) {
 @Composable
 fun HeroList(
     heroes: List<Hero> = listOf(),
-    repository: HeroRepository,
+    viewModel: HeroListViewModel,
     selectHero: (String) -> Unit
 ) {
     LazyColumn {
         items(heroes) { hero ->
-            HeroRow(hero, repository, selectHero)
+            HeroRow(hero, viewModel, selectHero)
         }
     }
 }
 
 @Composable
-fun HeroRow(hero: Hero, repository: HeroRepository, selectHero: (String) -> Unit) {
+fun HeroRow(hero: Hero, viewModel: HeroListViewModel, selectHero: (String) -> Unit) {
 
     var favorite by remember {
         mutableStateOf(false)
     }
     favorite = hero.favorite
-    val coroutineScope = rememberCoroutineScope()
 
     Card(
         modifier = Modifier
@@ -112,17 +102,13 @@ fun HeroRow(hero: Hero, repository: HeroRepository, selectHero: (String) -> Unit
             IconButton(
                 modifier = Modifier.weight(1f),
                 onClick = {
-
-                    coroutineScope.launch {
-                        if (favorite) {
-                            repository.delete(hero)
-                        } else {
-                            repository.insert(hero)
-                        }
-                        favorite = !favorite
-                        hero.favorite = favorite
+                    if (favorite) {
+                        viewModel.delete(hero)
+                    } else {
+                        viewModel.insert(hero)
                     }
-
+                    favorite = !favorite
+                    hero.favorite = favorite
                 }) {
                 Icon(
                     Icons.Filled.Favorite,
