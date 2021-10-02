@@ -22,6 +22,14 @@ class HeroRepository(private val heroService: HeroService, private val heroDao: 
         return listOf()
     }
 
+    suspend fun fetchHeroById(id: String): Hero {
+        val response = heroService.fetchHeroesById(id)
+        val hero = response.body() as Hero
+        hero.imageUrl = hero.image.url
+        hero.fullName = hero.biography.fullName
+        return hero
+    }
+
     suspend fun delete(hero: Hero) {
         heroDao.delete(hero)
     }

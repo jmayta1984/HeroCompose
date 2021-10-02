@@ -23,6 +23,8 @@ class Hero(
 
 ) {
 
+    constructor() : this("", "", "", "")
+
     @Ignore
     val biography: Biography = Biography()
 
