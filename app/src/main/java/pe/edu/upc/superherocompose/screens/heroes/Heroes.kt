@@ -1,4 +1,4 @@
-package pe.edu.upc.superherocompose.screens.herolist
+package pe.edu.upc.superherocompose.screens.heroes
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -26,58 +27,71 @@ import coil.compose.rememberImagePainter
 import pe.edu.upc.superherocompose.data.model.Hero
 
 @Composable
-fun HeroList(viewModel: HeroListViewModel, selectHero: (String) -> Unit) {
-
-    var name by remember {
-        mutableStateOf("")
-    }
-    val heroes: List<Hero> by viewModel.heroes.observeAsState(listOf())
-    val focusManager = LocalFocusManager.current
+fun Heroes(viewModel: HeroesViewModel, selectHero: (String) -> Unit) {
 
     Scaffold {
         Column {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-                value = name,
-                onValueChange = {
-                    name = it
-                },
-                leadingIcon = {
-                    Icon(Icons.Filled.Search, null)
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Search,
-                ),
-                keyboardActions = KeyboardActions(
-                    onSearch = {
-                        viewModel.fetchHeroesByName(name)
-                        focusManager.clearFocus()
-                    }
-                )
-            )
-            HeroList(heroes, viewModel, selectHero)
+            HeroSearch(viewModel)
+            HeroList(viewModel, selectHero)
         }
     }
+}
+
+@Composable
+fun HeroSearch(viewModel: HeroesViewModel) {
+    val name: String by viewModel.name.observeAsState("")
+    val focusManager = LocalFocusManager.current
+
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
+        value = name,
+        onValueChange = {
+            viewModel.update(it)
+        },
+        leadingIcon = {
+            Icon(Icons.Filled.Search, null)
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Search,
+        ),
+        keyboardActions = KeyboardActions(
+            onSearch = {
+                viewModel.fetchHeroesByName(name)
+                focusManager.clearFocus()
+            }
+        )
+    )
 }
 
 @Composable
 fun HeroList(
-    heroes: List<Hero> = listOf(),
-    viewModel: HeroListViewModel,
+    viewModel: HeroesViewModel,
     selectHero: (String) -> Unit
 ) {
+    val heroes: List<Hero> by viewModel.heroes.observeAsState(listOf())
+
     LazyColumn {
         items(heroes) { hero ->
-            HeroRow(hero, viewModel, selectHero)
+            HeroRow(
+                hero,
+                insertHero = { viewModel.insert(hero) },
+                deleteHero = { viewModel.delete(hero) },
+                selectHero
+            )
         }
     }
 }
 
 @Composable
-fun HeroRow(hero: Hero, viewModel: HeroListViewModel, selectHero: (String) -> Unit) {
+fun HeroRow(
+    hero: Hero,
+    insertHero: () -> Unit,
+    deleteHero: () -> Unit,
+    selectHero: (String) -> Unit
+) {
 
     var favorite by remember {
         mutableStateOf(false)
@@ -96,19 +110,18 @@ fun HeroRow(hero: Hero, viewModel: HeroListViewModel, selectHero: (String) -> Un
             HeroImage(hero)
             Spacer(modifier = Modifier.width(8.dp))
             Column(modifier = Modifier.weight(7f)) {
-                Text(hero.name)
+                Text(hero.name, fontWeight = FontWeight.Bold)
                 Text(hero.fullName)
             }
             IconButton(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     if (favorite) {
-                        viewModel.delete(hero)
+                        deleteHero()
                     } else {
-                        viewModel.insert(hero)
+                        insertHero()
                     }
                     favorite = !favorite
-                    hero.favorite = favorite
                 }) {
                 Icon(
                     Icons.Filled.Favorite,

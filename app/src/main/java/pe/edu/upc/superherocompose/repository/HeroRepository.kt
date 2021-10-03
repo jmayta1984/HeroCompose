@@ -6,15 +6,19 @@ import pe.edu.upc.superherocompose.data.remote.HeroService
 
 class HeroRepository(private val heroService: HeroService, private val heroDao: HeroDao) {
 
+    private suspend fun update(hero: Hero) {
+        hero.favorite = heroDao.fetchHeroById(hero.id) != null
+        hero.fullName = hero.biography.fullName
+        hero.imageUrl = hero.image.url
+    }
+
     suspend fun fetchHeroesByName(name: String): List<Hero> {
         val response = heroService.fetchHeroesByName(name)
         if (response.isSuccessful && response.body() != null) {
             if (response.body()!!.response == "success") {
                 val heroes = response.body()!!.results
                 for (hero in heroes) {
-                    hero.favorite = heroDao.fetchHeroById(hero.id) != null
-                    hero.fullName = hero.biography.fullName
-                    hero.imageUrl = hero.image.url
+                    update(hero)
                 }
                 return heroes
             }
@@ -25,16 +29,17 @@ class HeroRepository(private val heroService: HeroService, private val heroDao: 
     suspend fun fetchHeroById(id: String): Hero {
         val response = heroService.fetchHeroesById(id)
         val hero = response.body() as Hero
-        hero.imageUrl = hero.image.url
-        hero.fullName = hero.biography.fullName
+        update(hero)
         return hero
     }
 
     suspend fun delete(hero: Hero) {
         heroDao.delete(hero)
+        hero.favorite = false
     }
 
     suspend fun insert(hero: Hero) {
         heroDao.insert(hero)
+        hero.favorite = true
     }
 }

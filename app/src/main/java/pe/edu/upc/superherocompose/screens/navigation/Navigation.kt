@@ -9,25 +9,21 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import pe.edu.upc.superherocompose.screens.herodetails.HeroDetails
 import pe.edu.upc.superherocompose.screens.herodetails.HeroDetailsViewModel
-import pe.edu.upc.superherocompose.screens.herolist.HeroList
-import pe.edu.upc.superherocompose.screens.herolist.HeroListViewModel
+import pe.edu.upc.superherocompose.screens.heroes.Heroes
+import pe.edu.upc.superherocompose.screens.heroes.HeroesViewModel
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-
-    val viewModel: HeroListViewModel = hiltViewModel()
-    val detailsViewModel: HeroDetailsViewModel = hiltViewModel()
-
 
     NavHost(
         navController = navController,
         startDestination = "HeroList"
     ) {
 
-
         composable("HeroList") {
-            HeroList(viewModel) {
+            val viewModel: HeroesViewModel = hiltViewModel()
+            Heroes(viewModel) {
                 navController.navigate("HeroDetails/$it")
             }
         }
@@ -37,6 +33,7 @@ fun Navigation() {
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id", "") as String
+            val detailsViewModel: HeroDetailsViewModel = hiltViewModel()
             detailsViewModel.fetchHeroById(id)
             HeroDetails(detailsViewModel)
         }

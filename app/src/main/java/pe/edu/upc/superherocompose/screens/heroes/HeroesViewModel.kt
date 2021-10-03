@@ -1,4 +1,4 @@
-package pe.edu.upc.superherocompose.screens.herolist
+package pe.edu.upc.superherocompose.screens.heroes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,11 +10,18 @@ import pe.edu.upc.superherocompose.repository.HeroRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class HeroListViewModel @Inject constructor(private val heroRepository: HeroRepository) :
+class HeroesViewModel @Inject constructor(private val heroRepository: HeroRepository) :
     ViewModel() {
 
     private var _heroes = MutableLiveData<List<Hero>>()
     val heroes get() = _heroes
+
+    private var _name = MutableLiveData<String>()
+    val name get() = _name
+
+    fun update(name: String){
+        _name.postValue(name)
+    }
 
     fun fetchHeroesByName(name: String) {
         viewModelScope.launch {

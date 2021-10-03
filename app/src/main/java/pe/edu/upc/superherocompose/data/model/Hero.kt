@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "heroes")
 class Hero(
-
     @PrimaryKey
     val id: String,
 
@@ -20,13 +19,16 @@ class Hero(
 
     @ColumnInfo(name = "hero_image_url")
     var imageUrl: String
-
 ) {
 
     constructor() : this("", "", "", "")
 
     @Ignore
     val biography: Biography = Biography()
+
+    @Ignore
+    @SerializedName("powerstats")
+    val powerStats: PowerStats = PowerStats()
 
     @Ignore
     val image: Image = Image()
@@ -38,13 +40,30 @@ class Hero(
 
 class Biography(
     @SerializedName("full-name")
-    val fullName: String
+    val fullName: String,
+
+    @SerializedName("place-of-birth")
+    val birthPlace: String,
+
+    val publisher: String
 ) {
-    constructor() : this("")
+    constructor() : this("", "", "")
 }
 
 class Image(
     val url: String
 ) {
     constructor() : this("")
+}
+
+class PowerStats(
+    val intelligence: String,
+    val strength: String,
+    val speed: String,
+    val durability: String,
+    val power: String,
+    val combat: String
+
+) {
+    constructor() : this("", "", "", "", "", "")
 }
