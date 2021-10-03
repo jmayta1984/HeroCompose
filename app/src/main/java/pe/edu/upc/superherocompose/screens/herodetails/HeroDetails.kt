@@ -49,7 +49,8 @@ fun HeroDetails(viewModel: HeroDetailsViewModel) {
 fun HeroHeader(hero: Hero) {
     Text(
         text = hero.name,
-        style = MaterialTheme.typography.h5
+        style = MaterialTheme.typography.h5,
+        fontWeight = FontWeight.Bold,
     )
 }
 
@@ -129,7 +130,6 @@ fun HeroPower(key: String, value: String) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Text(
                     "$key",
                     style = MaterialTheme.typography.caption,
