@@ -10,8 +10,8 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 
 ## Screenshots
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38768001/135744698-363a3f21-843d-4cbb-b861-6970766ac0d1.png" width=50%"/>
-<img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=50%"/>
+<img src="https://user-images.githubusercontent.com/38768001/135744698-363a3f21-843d-4cbb-b861-6970766ac0d1.png" width=25%"/>
+<img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=25%"/>
 </p>
 
 ## Tech stack & Open-source libraries
