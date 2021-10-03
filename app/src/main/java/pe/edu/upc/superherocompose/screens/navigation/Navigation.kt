@@ -34,24 +34,34 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = "HeroList"
+        startDestination = Routes.HeroList.route
     ) {
 
-        composable("HeroList") {
+        composable(Routes.HeroList.route) {
             val viewModel: HeroesViewModel = hiltViewModel()
             Heroes(viewModel) {
-                navController.navigate("HeroDetails/$it")
+                navController.navigate("${Routes.HeroDetails.route}/$it")
             }
         }
 
         composable(
-            route = "HeroDetails/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.StringType })
+            route = Routes.HeroDetails.routeWithArgument,
+            arguments = listOf(navArgument(Routes.HeroDetails.argument) {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getString("id", "") as String
+            val id = backStackEntry.arguments?.getString(Routes.HeroDetails.argument, "") as String
             val detailsViewModel: HeroDetailsViewModel = hiltViewModel()
             detailsViewModel.fetchHeroById(id)
             HeroDetails(detailsViewModel)
         }
+    }
+}
+
+sealed class Routes(val route: String) {
+    object HeroList : Routes("HeroList")
+    object HeroDetails : Routes("HeroDetails") {
+        const val routeWithArgument = "HeroDetails/{id}"
+        const val argument = "id"
     }
 }
