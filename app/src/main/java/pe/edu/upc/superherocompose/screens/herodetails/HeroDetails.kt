@@ -151,14 +151,16 @@ fun HeroPower(key: String, value: String) {
                     style = MaterialTheme.typography.caption,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
-                        .padding(start = 8.dp)
                         .weight(1f)
+                        .padding(start = 8.dp)
                 )
                 Slider(
                     value = it,
                     onValueChange = {},
                     valueRange = 0f..100f,
-                    modifier = Modifier.weight(3f)
+                    modifier = Modifier
+                        .weight(3f)
+                        .padding(end = 8.dp)
                 )
             }
 
