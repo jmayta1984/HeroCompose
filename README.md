@@ -8,6 +8,12 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
   </p>
 
+## Screenshots
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38768001/135744698-363a3f21-843d-4cbb-b861-6970766ac0d1.png" width=50%"/>
+<img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=50%"/>
+</p>
+
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
