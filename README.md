@@ -5,15 +5,15 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-  <a href="http://developer.android.com/index.html"><img alt=Platform src="https://img.shields.io/badge/platform-Android-green.svg"/></a>
+  <a href="http://developer.android.com/index.html"><img alt="Platform" src="https://img.shields.io/badge/platform-Android-green.svg"/></a>
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
   </p>
 
 ## Screenshots
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38768001/135744698-363a3f21-843d-4cbb-b861-6970766ac0d1.png" "width=32%"/>
-<img src="https://user-images.githubusercontent.com/38768001/135744933-eb5fe0c6-5eb6-4820-9759-5b1ec77085b3.png" "width=32%"/>
-<img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" "width=32%"/>
+<img src="https://user-images.githubusercontent.com/38768001/135744698-363a3f21-843d-4cbb-b861-6970766ac0d1.png" width=32%/>
+<img src="https://user-images.githubusercontent.com/38768001/135744933-eb5fe0c6-5eb6-4820-9759-5b1ec77085b3.png" width=32%/>
+<img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=32%/>
 </p>
 
 ## Tech stack & Open-source libraries
