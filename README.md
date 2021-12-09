@@ -1,6 +1,6 @@
 <h1 align="center">HeroCompose</h1></br>
 <p align="center">  
-A demo app using compose based on modern Android tech-stacks and MVVM architecture. Fetching data from network and integrating persisted data in the database via repository pattern, using compose.
+A demo app using compose based on modern Android tech-stacks and MVVM architecture. Fetching data from network and integrating persisted data in the database via repository pattern.
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
 - JetPack
-  - Compose - A modern toolkit for building native Android UI.
+  - Compose - a modern toolkit for building native Android UI.
   - LiveData - notify domain layer data to views.
   - Lifecycle - dispose observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
@@ -29,7 +29,7 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
   - MVVM Architecture (Declarative View - ViewModel - Model)
   - Repository pattern
 - Material Design
-- [Retrofit2](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
+- [Retrofit2](https://github.com/square/retrofit) - construct the REST APIs.
 
 ## MAD Score
 ![summary](https://user-images.githubusercontent.com/38768001/135744388-2aee8e8c-c9ef-4ba8-a366-6e1790a1d90e.png)
