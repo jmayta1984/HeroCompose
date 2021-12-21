@@ -19,10 +19,11 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 
 
 ## How to build on your environment
-Add your [SuperHero API documentation](https://superheroapi.com/)'s API key in local.properties file.
+Add your [SuperHero](https://superheroapi.com/)'s API key in local.properties file.
 ```xml
 hero_api_key=YOUR_API_KEY
 ```
+
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
@@ -46,6 +47,10 @@ hero_api_key=YOUR_API_KEY
 ## Architecture
 HeroCompose is based on MVVM architecture and repository pattern.
 ![architecture](https://user-images.githubusercontent.com/38768001/134121196-9a278e99-fc4c-426a-a136-d564ebc2915d.png)
+
+## Slides
+![Slides](https://user-images.githubusercontent.com/38768001/146867991-b28c805c-85e7-4f4f-9f33-6e2ce1bad418.png)</br>
+Find the slides in the following [link](https://docs.google.com/presentation/d/1PNRzfWTVbRv7K2cTZUBKqnN8KoRrR740XJBHi49Hvfs/edit#slide=id.g10968617ed6_0_0).
 
 # License
 ```xml
