@@ -1,0 +1,14 @@
+# Gradle files
+
+/.idea
+/.idea/
+.gradle/
+build/
+
+# DS_Store
+*.DS_Store
+**/DS_Store
+
+ # Local configuration file (sdk path, etc)
+local.properties
+
