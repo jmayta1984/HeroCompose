@@ -29,7 +29,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -55,7 +54,7 @@ fun Heroes(viewModel: HeroesViewModel = hiltViewModel(), selectHero: (String) ->
 
 @Composable
 fun HeroSearch(viewModel: HeroesViewModel) {
-    val name: String by viewModel.name.observeAsState("")
+    val name: String by viewModel.name.collectAsState()
     val focusManager = LocalFocusManager.current
 
     OutlinedTextField(
@@ -87,7 +86,7 @@ fun HeroList(
     viewModel: HeroesViewModel ,
     selectHero: (String) -> Unit
 ) {
-    val heroes: List<Hero> by viewModel.heroes.observeAsState(listOf())
+    val heroes: List<Hero> by viewModel.heroes.collectAsState()
 
     LazyColumn {
         items(heroes) { hero ->

@@ -16,10 +16,10 @@
 
 package pe.edu.upc.herocompose.ui.heroes
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import pe.edu.upc.herocompose.data.model.Hero
 import pe.edu.upc.herocompose.repository.HeroRepository
@@ -30,10 +30,10 @@ import javax.inject.Inject
 class HeroesViewModel @Inject constructor(private val heroRepository: HeroRepository) :
     ViewModel() {
 
-    private var _heroes = MutableLiveData<List<Hero>>()
+    private var _heroes = MutableStateFlow<List<Hero>>(listOf())
     val heroes get() = _heroes
 
-    private var _name = MutableLiveData<String>()
+    private var _name = MutableStateFlow("")
     val name get() = _name
 
     fun update(name: String) {
