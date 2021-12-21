@@ -16,10 +16,10 @@
 
 package pe.edu.upc.herocompose.ui.herodetails
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import pe.edu.upc.herocompose.data.model.Hero
 import pe.edu.upc.herocompose.repository.HeroRepository
@@ -32,7 +32,7 @@ class HeroDetailsViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private var _hero = MutableLiveData<Hero>()
+    private var _hero = MutableStateFlow(Hero())
     val hero get() = _hero
 
     fun fetchHeroById(id: String) {
