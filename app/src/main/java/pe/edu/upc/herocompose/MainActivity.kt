@@ -22,14 +22,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import dagger.hilt.android.AndroidEntryPoint
 import pe.edu.upc.herocompose.ui.navigation.Navigation
-import pe.edu.upc.herocompose.ui.theme.SuperHeroComposeTheme
+import pe.edu.upc.herocompose.ui.theme.HeroComposeTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SuperHeroComposeTheme {
+            HeroComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     Navigation()
                 }

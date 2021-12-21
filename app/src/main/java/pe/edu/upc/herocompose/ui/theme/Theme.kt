@@ -44,7 +44,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun SuperHeroComposeTheme(
+fun HeroComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
