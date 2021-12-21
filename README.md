@@ -48,6 +48,7 @@ HeroCompose is based on MVVM architecture and repository pattern.
 
 ## Slides
 ![Slides](https://user-images.githubusercontent.com/38768001/146867547-b5e0a3d6-fe12-45ce-ad87-a8b95e6be3bc.png)
+
 Find slides in the following [link](https://docs.google.com/presentation/d/1PNRzfWTVbRv7K2cTZUBKqnN8KoRrR740XJBHi49Hvfs/edit#slide=id.g10968617ed6_0_0).
 
 # License
