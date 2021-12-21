@@ -24,6 +24,7 @@ Add your [SuperHero](https://superheroapi.com/)'s API key in local.properties fi
 hero_api_key=YOUR_API_KEY
 ```
 
+
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
