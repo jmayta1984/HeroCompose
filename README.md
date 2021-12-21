@@ -17,6 +17,7 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 <img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=32%/>
 </p>
 
+
 ## How to build on your environment
 Add your [SuperHero](https://superheroapi.com/)'s API key in local.properties file.
 ```xml
