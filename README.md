@@ -20,7 +20,9 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 
 ## How to build on your environment
 Add your [SuperHero API documentation](https://superheroapi.com/)'s API key in local.properties file.
+```xml
 hero_api_key=YOUR_API_KEY
+```
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
