@@ -16,6 +16,14 @@ A demo app using compose based on modern Android tech-stacks and MVVM architectu
 <img src="https://user-images.githubusercontent.com/38768001/135744699-ca34dd3b-be30-4dc1-9b25-b6e057ed53d7.png" width=32%/>
 </p>
 
+## How to build on your environment
+Add your [The Movie DB](https://www.themoviedb.org/)'s API key in local.properties file.
+```xml
+tmdb_api_key=YOUR_API_KEY
+```
+
+<img src="/previews/preview0.gif" align="right" width="32%"/>
+
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
