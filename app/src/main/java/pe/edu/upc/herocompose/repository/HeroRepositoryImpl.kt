@@ -36,8 +36,8 @@ class HeroRepositoryImpl @Inject constructor(
 
     override suspend fun fetchHeroesByName(name: String): Resource<List<Hero>> =
         withContext(Dispatchers.IO) {
-            val response = heroService.fetchHeroesByName(name)
             val heroes: List<Hero>
+            val response = heroService.fetchHeroesByName(name)
             if (response.isSuccessful && response.body() != null) {
                 if (response.body()!!.response == "success") {
                     heroes = response.body()!!.results
