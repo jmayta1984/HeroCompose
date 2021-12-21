@@ -85,7 +85,6 @@ android {
     }
 }
 
-
 dependencies {
     // architecture components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
