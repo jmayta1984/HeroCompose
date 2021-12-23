@@ -24,13 +24,11 @@ Add your [SuperHero](https://superheroapi.com/)'s API key in local.properties fi
 hero_api_key=YOUR_API_KEY
 ```
 
-
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
-- 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
+- 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow) for asynchronous.
 - JetPack
   - Compose - a modern toolkit for building native Android UI.
-  - LiveData - notify domain layer data to views.
   - Lifecycle - dispose observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
   - Room Persistence - construct database.
